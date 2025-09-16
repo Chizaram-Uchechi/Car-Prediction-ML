@@ -3,7 +3,7 @@ import pandas as pd
 
 def load_model():
     import joblib
-    model = joblib.load('packages//lr_car_pred_model.h5')
+    model = joblib.load('packages/lr_car_pred_model.h5')
     return model
 
 st.header("Car prediction App")
