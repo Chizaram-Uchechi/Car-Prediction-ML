@@ -20,7 +20,7 @@ st.markdown("""
     h1, h2, h3, p {
         color: #ffffff;
     }
-    .custom-white { color: white; }
+    .custom-white { color: white; important; }
 </style>
 """, unsafe_allow_html=True)
 st.markdown("<p class='custom-blue'></p>", unsafe_allow_html=True)
