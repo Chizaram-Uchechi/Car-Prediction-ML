@@ -1,89 +1,126 @@
 import streamlit as st
 import pandas as pd
-import joblib
 
-# --- Page configuration (must be first Streamlit command)
 st.set_page_config(
     page_title="Smart Car AutoPrice",
     layout="wide"
 )
-
-# --- Page title & intro
 st.title("Smart Car AutoPrice")
 st.markdown("### Let’s estimate the best selling price for your car.")
 
-# --- Extra custom CSS (optional)
+
+
 st.markdown("""
 <style>
-    /* page background override (dark greenish tone) */
-    .stApp { background-color: #293636; }
-
-    /* optional: custom font via Google Fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
-    html, body, [class*="st-"] {
-        font-family: 'Lato', sans-serif;
-    }
-
-    /* About button styling */
-    .about-btn {
-        background: linear-gradient(135deg, #ffafbd, #c9a0dc);
-        color: white;
-        padding: 0.6em 1.2em;
-        border: none;
-        border-radius: 30px;
-        font-weight: bold;
-        cursor: pointer;
-    }
+/* Apply it to the whole app */
+html, body, [class*="st-"] {
+    font-family: 'Lato', sans-serif;
+}
 </style>
 """, unsafe_allow_html=True)
 
-# --- Load the trained model
-@st.cache_resource
-def load_model():
-    return joblib.load("packages/lr_car_pred_model.h5")
 
-# --- User inputs
+def load_model():
+    import joblib
+    model = joblib.load('packages/lr_car_pred_model.h5')
+    return model
+
+
 col1, col2 = st.columns(2)
 
 with col1:
-    present_price = st.number_input(
-        "Current Price of the Car",
-        min_value=2_000_000,
-        step=1_000_000,
-        format="%d"
-    )
+    present_price = st.number_input("Current Price of the Car", min_value=2000000, step=1000000)
     fuel_type = st.selectbox("Fuel Type", ["Petrol", "Diesel", "CNG"])
 
 with col2:
     seller_type = st.selectbox("Seller Type", ["Dealer", "Individual"])
     transmission = st.selectbox("Transmission", ["Manual", "Automatic"])
 
-# --- Prediction button
-if st.button("Predict Price"):
+submit_button = st.button("Predict Price")
+
+if submit_button:
+    # Load the model
     model = load_model()
 
-    # Encode categorical variables
-    df = pd.DataFrame({
-        "Present_Price": [present_price],
-        "Fuel_Type_encoded": [ {"Petrol":0, "Diesel":1, "CNG":2}[fuel_type] ],
-        "Seller_Type_encoded": [ {"Dealer":0, "Individual":1}[seller_type] ],
-        "Transmission_encoded": [ {"Manual":0, "Automatic":1}[transmission] ]
-    })
+    # Create a DataFrame for the input data
+    input_data = {
+        'Present_Price': [present_price],
+        'Fuel_Type': [fuel_type],
+        'Seller_Type': [seller_type],
+        'Transmission': [transmission]
+    }
+    df = pd.DataFrame(input_data)
 
-    # Predict
-    selling_price = model.predict(df)[0]
-    st.success(f"Selling Price: ₦ {selling_price:,.2f} naira")
+    # Encode categorical variablses
+    df["Transmission_encoded"] = df["Transmission"].map({"Manual":0, "Automatic":1})
+    df["Seller_Type_encoded"] = df["Seller_Type"].map({"Dealer":0, "Individual":1})
+    df["Fuel_Type_encodeded"] = df["Fuel_Type"].map({"Petrol":0, "Diesel":1,"CNG":2})
+    X = df[["Present_Price","Fuel_Type_encodeded","Seller_Type_encoded","Transmission_encoded"]]
+    st.write(X)
+    # Predicting 
+    selling_price = model.predict(X)
+    st.success(f" Selling Price: ₦ {selling_price[0]:,.2f} naira")
+   
 
-# --- About section
-with st.expander("ℹ️ About This App"):
-    st.markdown("""
-    **Smart Car AutoPrice**  
 
-    This app uses a machine-learning regression model trained on
-    historic car sales data to estimate a fair resale price.
+# ---- Top-right About button ----
+about_css = """
+<style>
+/* container for the floating button */
+#about-button-container {
+    position: fixed;
+    top: 1rem;          /* distance from top of page */
+    right: 1rem;        /* distance from right edge */
+    z-index: 9999;      /* keep it above other elements */
+}
+/* style the button itself */
+#about-button-container button {
+    background: linear-gradient(135deg, #ffafbd, #c9a0dc);
+    color: white;
+    padding: 0.6em 1.2em;
+    border: none;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+</style>
 
-    **How it works**
-    1. Enter the current market price and car details.
-    2. The algorithm weighs these features against market trends.
-    3. You receive an evidence-based price estimate before you visit a dealer.
-    """)
+<div id="about-button-container">
+    <button onclick="window.dispatchEvent(new Event('about-click'))">
+        ℹ️ About
+    </button>
+</div>
+"""
+st.markdown(about_css, unsafe_allow_html=True)
+
+# Invisible streamlit listener for the custom click ----
+clicked = st.session_state.get("about_clicked", False)
+
+# small JS snippet to flip a Streamlit session variable when button clicked
+st.markdown("""
+<script>
+window.addEventListener('about-click', () => {
+    const streamlitEvent = new Event('streamlit:setComponentValue');
+    window.dispatchEvent(streamlitEvent);
+});
+</script>
+""", unsafe_allow_html=True)
+
+# a simple toggle using Streamlit widgets:
+show_about = st.checkbox("Show About", value=False, key="about_clicked",
+                         label_visibility="hidden")
+
+if show_about:
+    with st.expander("About This App", expanded=True):
+        st.markdown(
+            """
+            **Smart Car AutoPrice**  
+
+            Uses a machine-learning regression model trained on historic
+            car sales data to estimate a fair resale price.
+
+            * Enter car details (Current price of the car, Seller Type, fuel type, Transmission.).
+            * The algorithm weighs these features against market trends.
+            * You get an evidence based price estimate before you visit a dealer.
+            """
+        )
