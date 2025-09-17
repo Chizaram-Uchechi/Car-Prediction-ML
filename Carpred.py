@@ -23,7 +23,7 @@ st.markdown("""
     .custom-white { color: white; }
 </style>
 """, unsafe_allow_html=True)
-st.markdown("<p class='custom-blue'>This line is white</p>", unsafe_allow_html=True)
+st.markdown("<p class='custom-blue'></p>", unsafe_allow_html=True)
 
 #[theme]
 primaryColor="#293636"
