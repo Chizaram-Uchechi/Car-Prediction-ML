@@ -11,7 +11,7 @@ st.subheader("Let's predict the selling price...")
 
 with st.form("Car_form"):
     present_price = st.number_input("Enter Present Price of the car", min_value=0.0, step=1000.0)
-    fuel_type = st.selectbox("Select Fuel Type", ["Petrol", "Diseal", "CNG"])
+    fuel_type = st.selectbox("Select Fuel Type", ["Petrol", "Diesel", "CNG"])
     seller_type = st.selectbox("Select Seller Type", ["Dealer", "Individual"])
     transmission = st.selectbox("Select Transmission Type", ["Manual", "Automatic"])
 
