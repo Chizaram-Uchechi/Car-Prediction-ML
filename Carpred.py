@@ -12,13 +12,13 @@ st.markdown("### Let’s estimate the best selling price for your car.")
 st.markdown("""
 <style>
     /* page background */
-    .stApp { background-color: #64568A; }
+    .stApp { background-color: #293636; }
 
 </style>
 """, unsafe_allow_html=True)
 
 #[theme]
-primaryColor="#287272"
+primaryColor="#293636"
 backgroundColor="#64568A"
 secondaryBackgroundColor="#912065"
 textColor="#ffffff"
