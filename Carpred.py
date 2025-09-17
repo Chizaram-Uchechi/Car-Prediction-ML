@@ -3,8 +3,14 @@ import pandas as pd
 
 st.set_page_config(
     page_title="Smart Car AutoPrice",
-    layout="wide"
+    page_icon="🚗",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    menu_items={
+        'About': "This app estimates a fair selling price for your car using a machine-learning model."
+    }
 )
+
 st.title("Smart Car AutoPrice")
 st.markdown("### Let’s estimate the best selling price for your car.")
 
