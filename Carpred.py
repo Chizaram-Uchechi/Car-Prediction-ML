@@ -17,11 +17,6 @@ st.markdown("""
     .stApp { background-color: #293636; }
  </style> 
                        
-<style>
-html, body, [class*="st-"] {
-    color: #FFFFFF !important;   /* all text to white */
-}
-</style>
 """, unsafe_allow_html=True)  
             
 
@@ -296,4 +291,5 @@ if show_about:
             * You get an evidence based price estimate before you visit a dealer.
             """
         )
+
 
