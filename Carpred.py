@@ -13,13 +13,18 @@ st.markdown("""
 <style>
     /* page background */
     .stApp { background-color: #293636; }
-
+ </style> 
+                       
+    h1, h2, h3, p {
+        color: #0E0D0D;
+    }
+    .custom-blue { color: dodgerblue; }         
 </style>
 """, unsafe_allow_html=True)
 
 #[theme]
 primaryColor="#293636"
-backgroundColor="#64568A"
+backgroundColor="#0E0D0D"
 secondaryBackgroundColor="#912065"
 textColor="#ffffff"
 font="sans-serif"
