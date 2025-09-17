@@ -17,7 +17,7 @@ st.markdown("""
                        
    <style>
     h1, h2, h3, p {
-        color: #0E0D0D;
+        color: #912065;
     }
     .custom-black { color: Black; }
 </style>
