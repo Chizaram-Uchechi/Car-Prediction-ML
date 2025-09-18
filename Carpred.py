@@ -77,7 +77,7 @@ about_css = """
     position: fixed;
     top: 1rem;          /* distance from top of page */
     right: 1rem;        /* distance from right edge */
-    z-index: 9999;      /* keep it above other elements */
+    z-index: 1000;      /* keep it above other elements */
 }
 /* style the button itself */
 #about-button-container button {
@@ -130,3 +130,4 @@ if show_about:
             * You get an evidence based price estimate before you visit a dealer.
             """
         )
+
