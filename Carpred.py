@@ -21,7 +21,7 @@ html, body, [class*="st-"] {
 
 /* Dark background + white text */
 .stApp {
-    background-color: #F5F0E1;
+    background-color: #F3F0FF;
     color: #222;
 }
 
@@ -100,4 +100,5 @@ car-sales data to estimate a fair resale price.
 * The algorithm weighs these features against market trends.
 * You get an evidence-based price estimate before you visit a dealer.
 """)
+
 
