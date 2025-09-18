@@ -15,8 +15,8 @@ st.markdown("""
 <style>
 /* Set a dark background and white text */
 .stApp {
-    linear-gradient(135deg, #8e2de2 0%, #4a00e0 100%)     /* ← change hex to any colour you like */
-    color: ocean;
+    background-colour: #5A0010     /* ← change hex to any colour you like */
+    color: white;
 }
 </style>
 """, unsafe_allow_html=True)
