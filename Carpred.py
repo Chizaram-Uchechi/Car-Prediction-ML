@@ -10,40 +10,38 @@ st.set_page_config(
 st.title("Smart Car AutoPrice")
 st.markdown("### Let’s estimate the best selling price for your car.")
 
-# Global styles: font + background colour 
+# ---- Global styles: font + background + button ----
 st.markdown("""
 <style>
-* Set a dark background and white text */
-.stApp {
-    background-color: #293636;      /* ← change hex to any colour you like */
-    color: white;
-}
-</style>
-""", unsafe_allow_html=True)
-
-
-# Font
-st.markdown("""
-<style>
-/* Apply it to the whole app */
+/* Apply font everywhere */
 html, body, [class*="st-"] {
     font-family: 'Lato', sans-serif;
 }
-</style>
-""", unsafe_allow_html=True)
 
-# Button color
-st.markdown("""
-<style>
-.stButton>button {
-    background-color: #1E90FF; /* change to any of the above */
+/* Dark background + white text */
+.stApp {
+    background-color: #293636;
+    color: white;
+}
+
+/* ----- Custom button style ----- */
+.stButton > button {
+    background-color: #1E90FF;   /* Dodger Blue */
     color: white;
     font-weight: bold;
     border-radius: 8px;
     padding: 0.6em 1.2em;
+    border: none;
+    cursor: pointer;
+}
+
+/* Hover effect */
+.stButton > button:hover {
+    background-color: #63B3ED;   /* lighter blue on hover */
 }
 </style>
 """, unsafe_allow_html=True)
+
 
 
 def load_model():
@@ -104,6 +102,7 @@ if show_about:
     * The algorithm weighs these features against market trends.
     * You get an evidence-based price estimate before you visit a dealer.
     """)
+
 
 
 
