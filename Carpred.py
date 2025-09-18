@@ -21,7 +21,7 @@ html, body, [class*="st-"] {
 
 /* Set a dark background and white text */
 .stApp {
-    background-color: #293636;      /* ← change hex to any colour you like */
+    background-color: #1E3A8A;      /* ← change hex to any colour you like */
     color: white;
 }
 </style>
@@ -84,3 +84,4 @@ car-sales data to estimate a fair resale price.
 * The algorithm weighs these features against market trends.
 * You get an evidence-based price estimate before you visit a dealer.
 """)
+
