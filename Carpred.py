@@ -69,58 +69,21 @@ if submit_button:
    
 
 
-# ---- Top-right About button ----
-about_css = """
-<style>
-/* container for the floating button */
-#about-button-container {
-    position: fixed;
-    top: 1rem;          /* distance from top of page */
-    right: 1rem;        /* distance from right edge */
-    z-index: 9999;      /* keep it above other elements */
-}
-/* style the button itself */
-#about-button-container button {
-    background: linear-gradient(135deg, #ffafbd, #c9a0dc);
-    color: white;
-    padding: 0.6em 1.2em;
-    border: none;
-    border-radius: 30px;
-    font-weight: bold;
-    cursor: pointer;
-}
-</style>
-
-<div id="about-button-container">
-    <button onclick="window.dispatchEvent(new Event('about-click'))">
-        ℹ️ About
-    </button>
-</div>
-"""
-st.markdown(about_css, unsafe_allow_html=True)
-
-# Invisible streamlit listener for the custom click ----
-clicked = st.session_state.get("about_clicked", False)
-
-
-
-# a simple toggle using Streamlit widgets:
-show_about = st.checkbox("Show About", value=False, key="about_clicked",
-                         label_visibility="hidden")
+# --- About section ---
+# Create a toggle to show/hide the About information
+show_about = st.checkbox("ℹ️ About", value=False)
 
 if show_about:
-    with st.expander("About This App", expanded=True):
-        st.markdown(
-            """
-            **Smart Car AutoPrice**  
+    st.markdown("""
+    **Smart Car AutoPrice**
 
-            Uses a machine-learning regression model trained on historic
-            car sales data to estimate a fair resale price.
+    Uses a machine-learning regression model trained on historic
+    car-sales data to estimate a fair resale price.
 
-            * Enter car details (Current price of the car, Seller Type, fuel type, Transmission.).
-            * The algorithm weighs these features against market trends.
-            * You get an evidence based price estimate before you visit a dealer.
-            """
-        )
+    * Enter car details (Current price of the car, Seller Type, fuel type, Transmission).
+    * The algorithm weighs these features against market trends.
+    * You get an evidence-based price estimate before you visit a dealer.
+    """)
+
 
 
