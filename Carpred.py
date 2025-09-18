@@ -15,7 +15,7 @@ st.markdown("""
 <style>
 /* Set a dark background and white text */
 .stApp {
-    background-colour: #5A0010     /* ← change hex to any colour you like */
+    background-color: #5A0010     /* ← change hex to any colour you like */
     color: white;
 }
 </style>
@@ -90,6 +90,7 @@ if show_about:
     * The algorithm weighs these features against market trends.
     * You get an evidence-based price estimate before you visit a dealer.
     """)
+
 
 
 
