@@ -4,8 +4,7 @@ import pandas as pd
 st.set_page_config(
     page_title="Smart Car AutoPrice",
     page_icon="🚗",
-    layout="wide",
-    }
+    layout="wide"
 )
 
 st.title("Smart Car AutoPrice")
@@ -81,6 +80,7 @@ if show_about:
     * The algorithm weighs these features against market trends.
     * You get an evidence-based price estimate before you visit a dealer.
     """)
+
 
 
 
