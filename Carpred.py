@@ -72,7 +72,13 @@ if submit_button:
 # ---- Top-right About button ----
 about_css = """
 <style>
-
+/* container for the floating button */
+#about-button-container {
+    position: fixed;
+    top: 1rem;          /* distance from top of page */
+    right: 1rem;        /* distance from right edge */
+    z-index: 9999;      /* keep it above other elements */
+}
 /* style the button itself */
 #about-button-container button {
     background: linear-gradient(135deg, #ffafbd, #c9a0dc);
@@ -96,15 +102,7 @@ st.markdown(about_css, unsafe_allow_html=True)
 # Invisible streamlit listener for the custom click ----
 clicked = st.session_state.get("about_clicked", False)
 
-# small JS snippet to flip a Streamlit session variable when button clicked
-st.markdown("""
-<script>
-window.addEventListener('about-click', () => {
-    const streamlitEvent = new Event('streamlit:setComponentValue');
-    window.dispatchEvent(streamlitEvent);
-});
-</script>
-""", unsafe_allow_html=True)
+
 
 # a simple toggle using Streamlit widgets:
 show_about = st.checkbox("Show About", value=False, key="about_clicked",
