@@ -21,12 +21,25 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-
+# Font
 st.markdown("""
 <style>
 /* Apply it to the whole app */
 html, body, [class*="st-"] {
     font-family: 'Lato', sans-serif;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# Button color
+st.markdown("""
+<style>
+.stButton>button {
+    background-color: #1E90FF; /* change to any of the above */
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 0.6em 1.2em;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -90,6 +103,7 @@ if show_about:
     * The algorithm weighs these features against market trends.
     * You get an evidence-based price estimate before you visit a dealer.
     """)
+
 
 
 
