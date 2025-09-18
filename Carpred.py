@@ -72,13 +72,7 @@ if submit_button:
 # ---- Top-right About button ----
 about_css = """
 <style>
-/* container for the floating button */
-#about-button-container {
-    position: fixed;
-    top: 1rem;          /* distance from top of page */
-    right: 1rem;        /* distance from right edge */
-    z-index: 1000;      /* keep it above other elements */
-}
+
 /* style the button itself */
 #about-button-container button {
     background: linear-gradient(135deg, #ffafbd, #c9a0dc);
@@ -130,4 +124,5 @@ if show_about:
             * You get an evidence based price estimate before you visit a dealer.
             """
         )
+
 
