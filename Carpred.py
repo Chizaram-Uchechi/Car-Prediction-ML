@@ -75,7 +75,7 @@ show_about = st.checkbox("ℹ️ About", value=False)
 
 if show_about:
     st.markdown("""
-   *Smart Car AutoPrice*
+   **Smart Car AutoPrice**
 
     Uses a machine-learning regression model trained on historic
     car-sales data to estimate a fair resale price.
@@ -84,6 +84,7 @@ if show_about:
     * The algorithm weighs these features against market trends.
     * You get an evidence-based price estimate before you visit a dealer.
     """)
+
 
 
 
