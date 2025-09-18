@@ -18,9 +18,9 @@ html, body, [class*="st-"] {
     font-family: 'Lato', sans-serif;
 }
 
-/* Dark background + white text */
+/* Set a dark background and white text */
 .stApp {
-    background-color: #293636;
+    background-color: #293636;      /* ← change hex to any colour you like */
     color: white;
 }
 
@@ -102,6 +102,7 @@ if show_about:
     * The algorithm weighs these features against market trends.
     * You get an evidence-based price estimate before you visit a dealer.
     """)
+
 
 
 
