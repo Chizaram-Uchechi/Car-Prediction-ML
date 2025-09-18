@@ -15,7 +15,7 @@ st.markdown("""
 <style>
 /* Set a dark background and white text */
 .stApp {
-    background-color: linear-gradient(135deg, #8e2de2 0%, #4a00e0 100%)     /* ← change hex to any colour you like */
+    linear-gradient(135deg, #8e2de2 0%, #4a00e0 100%)     /* ← change hex to any colour you like */
     color: ocean;
 }
 </style>
@@ -90,6 +90,7 @@ if show_about:
     * The algorithm weighs these features against market trends.
     * You get an evidence-based price estimate before you visit a dealer.
     """)
+
 
 
 
