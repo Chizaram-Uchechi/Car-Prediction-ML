@@ -7,11 +7,11 @@ st.set_page_config(
     layout="wide"
 )
 
-# ---- Page title ----
+# Page title 
 st.title("Smart Car AutoPrice")
 st.markdown("### Let’s estimate the best selling price for your car.")
 
-# ---- Global styles: font + background + button ----
+# Global styles: font + background + button
 st.markdown("""
 <style>
 /* Apply font everywhere */
@@ -25,7 +25,7 @@ html, body, [class*="st-"] {
     color: #222;
 }
 
-/* ----- Custom button style ----- */
+/*  Custom button style  */
 .stButton > button {
     background-color: #1E90FF;   /* Dodger Blue */
     color: white;
@@ -43,13 +43,13 @@ html, body, [class*="st-"] {
 </style>
 """, unsafe_allow_html=True)
 
-# ---- Load the trained model ----
+#  Load the trained model 
 def load_model():
     import joblib
     model = joblib.load('packages/lr_car_pred_model.h5')
     return model
 
-# ---- User inputs ----
+#  User inputs 
 col1, col2 = st.columns(2)
 
 with col1:
@@ -86,7 +86,7 @@ if submit_button:
     selling_price = model.predict(X)
     st.success(f"Selling Price: ₦ {selling_price[0]:,.2f} naira")
 
-# ---- About section ----
+#  About section 
 show_about = st.checkbox("ℹ️ About", value=False)
 
 if show_about:
@@ -100,5 +100,6 @@ car-sales data to estimate a fair resale price.
 * The algorithm weighs these features against market trends.
 * You get an evidence-based price estimate before you visit a dealer.
 """)
+
 
 
