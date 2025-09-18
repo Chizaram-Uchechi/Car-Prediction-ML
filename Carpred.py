@@ -10,13 +10,12 @@ st.set_page_config(
 st.title("Smart Car AutoPrice")
 st.markdown("### Let’s estimate the best selling price for your car.")
 
-# ---- Global styles: font + background colour ----
+# Global styles: font + background colour 
 st.markdown("""
 <style>
 /* Set a dark background and white text */
 .stApp {
-    background-color: 0D1117      /* ← change hex to any colour you like */
-    color: black;
+    background-color: #293636;      
 }
 </style>
 """, unsafe_allow_html=True)
@@ -90,6 +89,7 @@ if show_about:
     * The algorithm weighs these features against market trends.
     * You get an evidence-based price estimate before you visit a dealer.
     """)
+
 
 
 
