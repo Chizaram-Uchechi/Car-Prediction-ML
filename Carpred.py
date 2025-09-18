@@ -7,10 +7,11 @@ st.set_page_config(
     layout="wide"
 )
 
+# ---- Page title ----
 st.title("Smart Car AutoPrice")
 st.markdown("### Let’s estimate the best selling price for your car.")
 
-# ---- Global styles: font + background + button ----
+# ---- Global styles: font + background colour ----
 st.markdown("""
 <style>
 /* Apply font everywhere */
@@ -23,33 +24,16 @@ html, body, [class*="st-"] {
     background-color: #293636;      /* ← change hex to any colour you like */
     color: white;
 }
-
-/* ----- Custom button style ----- */
-.stButton > button {
-    background-color: #1E90FF;   /* Dodger Blue */
-    color: white;
-    font-weight: bold;
-    border-radius: 8px;
-    padding: 0.6em 1.2em;
-    border: none;
-    cursor: pointer;
-}
-
-/* Hover effect */
-.stButton > button:hover {
-    background-color: #63B3ED;   /* lighter blue on hover */
-}
 </style>
 """, unsafe_allow_html=True)
 
-
-
+# ---- Load the trained model ----
 def load_model():
     import joblib
     model = joblib.load('packages/lr_car_pred_model.h5')
     return model
 
-
+# ---- User inputs ----
 col1, col2 = st.columns(2)
 
 with col1:
@@ -75,59 +59,28 @@ if submit_button:
     }
     df = pd.DataFrame(input_data)
 
-    # Encode categorical variablses
-    df["Transmission_encoded"] = df["Transmission"].map({"Manual":0, "Automatic":1})
-    df["Seller_Type_encoded"] = df["Seller_Type"].map({"Dealer":0, "Individual":1})
-    df["Fuel_Type_encodeded"] = df["Fuel_Type"].map({"Petrol":0, "Diesel":1,"CNG":2})
-    X = df[["Present_Price","Fuel_Type_encodeded","Seller_Type_encoded","Transmission_encoded"]]
+    # Encode categorical variables
+    df["Transmission_encoded"] = df["Transmission"].map({"Manual": 0, "Automatic": 1})
+    df["Seller_Type_encoded"] = df["Seller_Type"].map({"Dealer": 0, "Individual": 1})
+    df["Fuel_Type_encodeded"] = df["Fuel_Type"].map({"Petrol": 0, "Diesel": 1, "CNG": 2})
+    X = df[["Present_Price", "Fuel_Type_encodeded", "Seller_Type_encoded", "Transmission_encoded"]]
     st.write(X)
+
     # Predicting 
     selling_price = model.predict(X)
-    st.success(f" Selling Price: ₦ {selling_price[0]:,.2f} naira")
-   
+    st.success(f"Selling Price: ₦ {selling_price[0]:,.2f} naira")
 
-
-#  About section 
-#  A toggle to show/hide the About information
+# ---- About section ----
 show_about = st.checkbox("ℹ️ About", value=False)
 
 if show_about:
     st.markdown("""
-   **Smart Car AutoPrice**
+**Smart Car AutoPrice**
 
-    Uses a machine-learning regression model trained on historic
-    car-sales data to estimate a fair resale price.
+Uses a machine-learning regression model trained on historic
+car-sales data to estimate a fair resale price.
 
-    * Enter car details (Current price of the car, Seller Type, fuel type, Transmission).
-    * The algorithm weighs these features against market trends.
-    * You get an evidence-based price estimate before you visit a dealer.
-    """)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+* Enter car details (Current price of the car, Seller Type, fuel type, Transmission).
+* The algorithm weighs these features against market trends.
+* You get an evidence-based price estimate before you visit a dealer.
+""")
